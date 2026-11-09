@@ -3,6 +3,8 @@ package models;
 import java.util.List;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import exceptions.Validacoes;
 
 public class Prontuario {
 
@@ -12,7 +14,7 @@ public class Prontuario {
 
     public Prontuario(int id) {
 
-        this.id = id;
+        this.id = Validacoes.positivo(id, "id do prontuário");
 
         this.historico = new ArrayList<>();
 
@@ -20,13 +22,13 @@ public class Prontuario {
 
     public void adicionarAtendimento(Atendimento atendimento) {
 
-        this.historico.add(atendimento);
+        this.historico.add(Validacoes.obrigatorio(atendimento, "atendimento"));
 
     }
 
     public List<Atendimento> consultarHistorico() {
 
-        return this.historico;
+        return Collections.unmodifiableList(this.historico);
 
     }
 
