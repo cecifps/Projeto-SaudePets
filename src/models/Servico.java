@@ -14,4 +14,9 @@ public class Servico {
         this.descricao = Validacoes.texto(descricao, "descrição");
         this.duracaoMinutos = Validacoes.positivo(duracaoMinutos, "duração em minutos");
     }
+
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public String getDescricao() { return descricao; }
+    public int getDuracaoMinutos() { return duracaoMinutos; }
 }
