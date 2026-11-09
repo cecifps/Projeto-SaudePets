@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import exceptions.Validacoes;
 
 public class Cliente {
     private int id;
@@ -9,13 +10,13 @@ public class Cliente {
     private String email;
 
     public Cliente(int id, String nome, String telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
+        this.id = Validacoes.positivo(id, "id");
+        this.nome = Validacoes.texto(nome, "nome");
+        this.telefone = Validacoes.texto(telefone, "telefone");
+        this.email = Validacoes.texto(email, "email");
     }
 
     public List<Atendimento> consultarHistorico(Paciente paciente) {
-        return paciente.consultarProntuario().consultarHistorico();
+        return Validacoes.obrigatorio(paciente, "paciente").consultarProntuario().consultarHistorico();
     }
 }
